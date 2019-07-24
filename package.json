@@ -1,0 +1,26 @@
+{
+  "name": "week4-ayakira",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node ./test.js",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facn6/week4-AyaKira.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/facn6/week4-AyaKira/issues"
+  },
+  "homepage": "https://github.com/facn6/week4-AyaKira#readme",
+  "dependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "devDependencies": {
+    "tape": "^4.11.0"
+  }
+}

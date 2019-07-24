@@ -1,0 +1,59 @@
+.title {
+  text-align: center;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  background-image: linear-gradient(to bottom, rgb(0, 0, 0), rgb(34, 38, 94));
+  padding: 10px 10px;
+}
+
+#input {
+  background-image: url("https://cdn2.iconfinder.com/data/icons/web-technology-outline/100/outline_search_lupa_find-512.png"); /* Add a search icon to input */
+  background-size: 25px 25px;
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 60%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
+#serchList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0px 20%;
+  display: block;
+  width: 60%;
+}
+
+#serchList li {
+  border: 1px solid #ddd; /* Add a border to all links */
+  margin-top: -1px; /* Prevent double borders */
+  background-color: white;
+  padding: 12px; /* Add some padding */
+  text-decoration: none; /* Remove default text underline */
+  font-size: 18px; /* Increase the font-size */
+  color: black; /* Add a black text color */
+}
+
+#serchList li:hover:not(.header) {
+  background-color: #eee; /* Add a hover effect to all links, except for headers */
+}
+
+.search-section {
+  background-image: linear-gradient(to bottom, rgb(26, 32, 83), rgb(0, 0, 0));
+  padding: 10px 10px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
+}
+
+.flag-section {
+  background-color: black;
+  padding: 20px 20px;
+  text-align: center;
+}
+#flag {
+  width: 30%;
+  height: auto;
+}
