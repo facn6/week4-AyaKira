@@ -1,133 +1,52 @@
+// Fetch the JSON object, parse it into an array
 var arrOfWords;
 
 function populate() {
-  console.log("Populate!");
   var objectRecieved = "/json";
-
   fetch(objectRecieved)
     .then(function(response) {
       return response.json();
     })
     .then(function(parsed) {
       arrOfWords = Object.keys(parsed);
-      // setTimeout(function() {
-      //   console.log(arrOfWords);
-      // }, 0);
-      //
-      // console.log(arrOfWords[87658]);
     });
 }
-
 populate();
 
-// console.log(arrOfWords);
-
-// setTimeout(function() {
-//   console.log(arrOfWords);
-// }, 1000);
-
-// document.getElementById("input").addEventListener("click", showList);
-
+// onkeyup this functions executes and populates the list of suggested words
 function showList() {
   var input = document.getElementById("input").value.toLowerCase();
   var ul = document.getElementById("serchList");
   ul.style.display = "block";
+  // List of suggestions to be wiped clean before generating a new list
   while (ul.hasChildNodes()) {
     ul.removeChild(ul.firstChild);
   }
-
+  // No list of suggestions to be shown, if there is no input
   if (input !== "") {
     var roots = arrOfWords.filter(function(element) {
       return element.startsWith(input);
     });
-
     var suggestions = roots.slice(0, 10);
-
+    // Create a node for each word suggested
     suggestions.forEach(function(element) {
       var li = document.createElement("li");
       li.innerHTML = element;
+      // Words can be selected by clicking on them or pointing + hitting enter
       li.addEventListener("click", function(e) {
         document.getElementById("input").value = e.target.textContent;
         document.getElementById("serchList").style.display = "none";
+      });
+
+      li.addEventListener("mouseenter", function(e) {
+        document.onkeyup = function() {
+          if (event.keyCode === 13) {
+            document.getElementById("input").value = e.target.textContent;
+            document.getElementById("serchList").style.display = "none";
+          }
+        };
       });
       ul.appendChild(li);
     });
   }
 }
-
-// for (i = 0; i < suggestions.length - 1; i++) {
-// li = ul.getElementsByTagName("li");
-// for (i = 0; i < li.length; i++) {
-//   txtValue = li[i].innerText.toUpperCase();
-//   if (txtValue.indexOf(names) > -1) {
-//     li[i].style.display = "block";
-//   } else {
-//     li[i].style.display = "none";
-//   }
-
-//This function populates the DOM (cards) with the info received from the API.
-
-// function getCountry(value) {
-//   var country = value;
-//   var objectRecieved = "https://restcountries.eu/rest/v2/name/" + country;
-//   fetch(objectRecieved)
-//     .then(function(response) {
-//       return response.json();
-//     })
-//     .then(function(parsed) {
-//       var div = document.createElement("div");
-//       cards.appendChild(node);
-//       var textnode = document.createTextNode("Water");
-//       node.appendChild(textnode);
-//
-//       var countryName = document.getElementById("countryName");
-//       var fromHTML = parsed[0].name;
-//       countryName.innerHTML = fromHTML;
-//
-//       var lang = document.getElementById("language");
-//       var langApi = parsed[0].languages.map(function(element) {
-//         return element.name;
-//       });
-//       lang.innerHTML = langApi;
-//
-//       var capi = document.getElementById("capital");
-//       capi.innerHTML = parsed[0].capital;
-//
-//       var code = document.getElementById("code");
-//       code.innerHTML = parsed[0].callingCodes;
-//
-//       var pop = document.getElementById("pop");
-//       pop.innerHTML = parsed[0].population;
-//
-//       var currency = document.getElementById("currency");
-//       currency.innerHTML = parsed[0].currencies[0].code;
-//
-//       var reg = document.getElementById("reg");
-//       reg.innerHTML = parsed[0].region;
-//
-//       var flag = document.getElementById("flag");
-//       flag.src = parsed[0].flag;
-//     })
-//     .catch(function(error) {
-//       console.log(error);
-//     });
-// }
-
-//   if (arrOfWords.indexOf(^"input") !== -1) {
-//     console.log("Yes!", input);
-//
-// }
-
-// li.addEventListener("click", function(e) {
-//   getCountry(e.target.textContent);
-//   document.getElementById("input").value = "";
-//   document.getElementById("serchList").style.display = "block";
-// }
-
-// str.startsWith("Hello");
-// /(\bt\S+\b)/ig
-// "#" + stringToGoIntoTheRegex + "#", "g"
-
-// var regex = new RegExp("#" + input + "#", "g");
-//
-// console.log(regex)
