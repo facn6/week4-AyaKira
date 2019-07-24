@@ -1,11 +1,9 @@
-var fs = require("fs");
-var path = require("path");
-var querystring = require("querystring");
+const fs = require("fs");
+const path = require("path");
+// var querystring = require("querystring");
 
-function handler(request, response) {
-  var endpoint = request.url;
+const handleHome= (request,response)=> {
 
-  if (endpoint === "/") {
     fs.readFile(__dirname + "/../public/index.html", function(error, file) {
       if (error) {
         console.log(error);
@@ -16,8 +14,9 @@ function handler(request, response) {
         response.end(file);
       }
     });
-  } else if (endpoint === "/json") {
-    console.log("JSON lives forever!");
+  }
+
+  const handleJson= (request,response)=> {
     fs.readFile(__dirname + "/words_dictionary.json", function(error, file) {
       if (error) {
         console.log(error);
@@ -28,8 +27,10 @@ function handler(request, response) {
         response.end(file);
       }
     });
-  } else if (endpoint.indexOf(".") !== -1) {
-    const extention = endpoint.split(".")[1];
+  }
+   const handlePublic= (request,response)=> {
+     const url=request.url;
+    const extention = url.split(".")[1];
     const extentionType = {
       html: "text/html",
       css: "text/css",
@@ -37,7 +38,7 @@ function handler(request, response) {
       ico: "image/x-icon",
       jpg: "image/jpeg"
     };
-    const filePath = path.join(__dirname, "..", "public", endpoint);
+    const filePath = path.join(__dirname, "..", "public", url);
     fs.readFile(filePath, (error, file) => {
       if (error) {
         console.log(error);
@@ -48,25 +49,34 @@ function handler(request, response) {
         response.end(file);
       }
     });
-  } else if (endpoint === "/create-post") {
-    var allTheData = "";
-    request.on("data", function(chunkOfData) {
-      allTheData += chunkOfData;
-    });
-
-    request.on("end", function() {
-      var convertedData = querystring.parse(allTheData);
-      console.log(convertedData);
-      response.writeHead(308, { Location: "/" });
-      response.end();
-    });
   }
-  var method = request.method;
-  console.log(method);
-  console.log(endpoint);
+
+
+const handleNotfound=(request,response)=>{
+  response.writeHead(404);
+  response.end('<h1>page is not found</h1>');
 }
 
-module.exports = handler;
+
+  // else if (endpoint === "/create-post") {
+  //  var allTheData = "";
+  //  request.on("data", function(chunkOfData) {
+  //     allTheData += chunkOfData;
+  //   });
+  //
+  //   request.on("end", function() {
+  //     var convertedData = querystring.parse(allTheData);
+  //     console.log(convertedData);
+  //     response.writeHead(308, { Location: "/" });
+  //     response.end();
+  //   });
+  // }
+//   var method = request.method;
+//   console.log(method);
+//   console.log(endpoint);
+// }
+
+module.exports ={ handleHome,handleJson,handlePublic,handleNotfound};
 
 // var fs = require("fs");
 // var path = require("path");
