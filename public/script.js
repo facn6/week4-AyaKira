@@ -1,8 +1,13 @@
+function myFunction() {
+  document.getElementById("loader").style.display = "none";
+}
+
 let arrOfWords = [];
 function populate() {
   var objectRecieved = "/json";
   fetch(objectRecieved)
     .then(function(response) {
+      myFunction();
       return response.json();
     })
     .then(function(parsed) {
