@@ -7,11 +7,13 @@ function populate() {
   var objectRecieved = "/json";
   fetch(objectRecieved)
     .then(function(response) {
-      myFunction();
       return response.json();
     })
     .then(function(parsed) {
       arrOfWords = Object.keys(parsed);
+    })
+    .then(function() {
+      myFunction();
     });
 }
 populate();
