@@ -1,6 +1,8 @@
-// Fetch the JSON object, parse it into an array
-var arrOfWords;
+function myFunction() {
+  document.getElementById("loader").style.display = "none";
+}
 
+let arrOfWords = [];
 function populate() {
   var objectRecieved = "/json";
   fetch(objectRecieved)
@@ -9,10 +11,14 @@ function populate() {
     })
     .then(function(parsed) {
       arrOfWords = Object.keys(parsed);
+    })
+    .then(function() {
+      myFunction();
     });
 }
 populate();
 
+// Fetch the JSON object, parse it into an array
 // onkeyup this functions executes and populates the list of suggested words
 function showList() {
   var input = document.getElementById("input").value.toLowerCase();
