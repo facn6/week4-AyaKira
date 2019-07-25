@@ -1,13 +1,15 @@
-var myVar;
-
-function myFunction() {
-  myVar = setTimeout(showPage, 5000);
+let arrOfWords = [];
+function populate() {
+  var objectRecieved = "/json";
+  fetch(objectRecieved)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(parsed) {
+      arrOfWords = Object.keys(parsed);
+    });
 }
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
-}
+populate();
 
 // Fetch the JSON object, parse it into an array
 // onkeyup this functions executes and populates the list of suggested words
