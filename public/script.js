@@ -18,11 +18,19 @@ function populate() {
 }
 populate();
 
-// Fetch the JSON object, parse it into an array
+function preventNumberInput(e){
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+    if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107 ){
+        e.preventDefault();
+    }
+}
+
+
+
 // onkeyup this functions executes and populates the list of suggested words
 function showList() {
   var input = document.getElementById("input").value.toLowerCase();
-  var ul = document.getElementById("serchList");
+  var ul = document.getElementById("searchList");
   ul.style.display = "block";
   // List of suggestions to be wiped clean before generating a new list
   while (ul.hasChildNodes()) {
@@ -41,17 +49,19 @@ function showList() {
       // Words can be selected by clicking on them or pointing + hitting enter
       li.addEventListener("click", function(e) {
         document.getElementById("input").value = e.target.textContent;
-        document.getElementById("serchList").style.display = "none";
+        document.getElementById("searchList").style.display = "none";
       });
 
       li.addEventListener("mouseenter", function(e) {
         document.onkeyup = function() {
           if (event.keyCode === 13) {
             document.getElementById("input").value = e.target.textContent;
-            document.getElementById("serchList").style.display = "none";
+            document.getElementById("searchList").style.display = "none";
           }
         };
       });
+
+  
       ul.appendChild(li);
     });
   }

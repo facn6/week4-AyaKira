@@ -90,11 +90,12 @@
         <input
           type="text"
           id="input"
+          onkeydown="preventNumberInput(event)"
           onkeyup="showList()"
           placeholder="There are so many words..."
         />
 
-        <ul id="serchList"></ul>
+        <ul id="searchList"></ul>
       </div>
     </section>
 
