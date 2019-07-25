@@ -1,6 +1,8 @@
-// Fetch the JSON object, parse it into an array
-var arrOfWords;
+function myFunction() {
+  document.getElementById("loader").style.display = "none";
+}
 
+let arrOfWords = [];
 function populate() {
   var objectRecieved = "/json";
   fetch(objectRecieved)
@@ -9,6 +11,9 @@ function populate() {
     })
     .then(function(parsed) {
       arrOfWords = Object.keys(parsed);
+    })
+    .then(function() {
+      myFunction();
     });
 }
 populate();
@@ -17,7 +22,6 @@ function preventNumberInput(e){
     var keyCode = (e.keyCode ? e.keyCode : e.which);
     if (keyCode > 47 && keyCode < 58 || keyCode > 95 && keyCode < 107 ){
         e.preventDefault();
-      document.getElementById('input').innerHTML = " Please type letters not digits *";
     }
 }
 
@@ -56,6 +60,8 @@ function showList() {
           }
         };
       });
+
+  
       ul.appendChild(li);
     });
   }
