@@ -18,7 +18,7 @@
   margin-bottom: 12px; /* Add some space below the input */
 }
 
-#serchList {
+#searchList {
   list-style-type: none;
   padding: 0;
   margin: 0px 20%;
@@ -26,7 +26,7 @@
   width: 60%;
 }
 
-#serchList li {
+#searchList li {
   border: 1px solid #ddd; /* Add a border to all links */
   margin-top: -1px; /* Prevent double borders */
   background-color: white;
@@ -36,7 +36,7 @@
   color: black; /* Add a black text color */
 }
 
-#serchList li:hover:not(.header) {
+#searchList li:hover:not(.header) {
   background-color: #eee; /* Add a hover effect to all links, except for headers */
 }
 
